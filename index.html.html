@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahogany Masterpieces — Social Media Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mahogany: #5C2018;
+    --mahogany-light: #8B3A2A;
+    --mahogany-pale: #F5EDE8;
+    --gold: #B8965A;
+    --gold-light: #D4B07A;
+    --gold-pale: #FAF5EC;
+    --charcoal: #1E1E1E;
+    --mid: #6B6560;
+    --light: #F7F4F1;
+    --white: #FDFCFB;
+    --border: #E8DDD5;
+    --red-tag: #C0392B;
+    --red-tag-bg: #FDF0EE;
+    --penthouse: #1A4A7A;
+    --penthouse-bg: #EBF2FA;
+    --giftware: #2E6B3E;
+    --giftware-bg: #EBF5EE;
+    --product: #6B3F1E;
+    --product-bg: #F5EDE4;
+    --reel: #1A3A5C;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--light);
+    color: var(--charcoal);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--mahogany);
+    color: var(--white);
+    padding: 40px 60px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px solid var(--gold);
+  }
+  .header-left h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+  }
+  .header-left h1 span { color: var(--gold-light); font-style: italic; }
+  .header-left p {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-top: 6px;
+  }
+  .header-right {
+    text-align: right;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.8;
+  }
+  .header-right strong { color: var(--gold-light); font-weight: 500; }
+
+  /* LEGEND */
+  .legend {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 60px;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .legend-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-right: 4px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 12px 5px 8px;
+    border-radius: 3px;
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .badge-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .b-penthouse { background: var(--penthouse-bg); color: var(--penthouse); }
+  .b-penthouse .badge-dot { background: var(--penthouse); }
+  .b-redtag { background: #FDF0EE; color: var(--red-tag); }
+  .b-redtag .badge-dot { background: var(--red-tag); }
+  .b-giftware { background: var(--giftware-bg); color: var(--giftware); }
+  .b-giftware .badge-dot { background: var(--giftware); }
+  .b-product { background: var(--product-bg); color: var(--product); }
+  .b-product .badge-dot { background: var(--product); }
+  .b-reel { background: #EBF0F7; color: var(--reel); }
+  .b-reel .badge-dot { background: var(--reel); }
+  .boost-pill {
+    background: var(--gold);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* WEEK BLOCK */
+  .week-block {
+    margin: 32px 60px 0;
+  }
+  .week-block:last-child { margin-bottom: 60px; }
+
+  .week-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .week-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .week-dates {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .week-note {
+    margin-left: auto;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--red-tag);
+    font-weight: 600;
+    text-transform: uppercase;
+    background: var(--red-tag-bg);
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  /* POST CARD */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+
+  .post-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .post-card:hover { box-shadow: 0 4px 20px rgba(92,32,24,0.08); }
+
+  .card-top {
+    padding: 14px 16px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-meta { display: flex; flex-direction: column; gap: 5px; }
+  .post-date {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--charcoal);
+  }
+  .post-number {
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .card-tags { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+
+  .card-title {
+    padding: 12px 16px 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    line-height: 1.3;
+  }
+  .card-ref {
+    padding: 0 16px 12px;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .card-format {
+    display: inline-block;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    padding: 2px 7px;
+    margin: 0 16px 12px;
+  }
+
+  /* EDITABLE SECTIONS */
+  .card-section {
+    border-top: 1px solid var(--border);
+  }
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--mid);
+    cursor: pointer;
+    background: var(--light);
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .section-label:hover { background: #EEE8E3; }
+  .section-label .chevron {
+    margin-left: auto;
+    font-size: 0.7rem;
+    transition: transform 0.2s;
+  }
+  .section-label.open .chevron { transform: rotate(180deg); }
+
+  .section-icon { font-size: 0.85rem; }
+
+  .section-body {
+    display: none;
+    padding: 12px 16px;
+    background: var(--white);
+  }
+  .section-body.open { display: block; }
+
+  /* IMAGE UPLOAD AREA */
+  .image-upload-area {
+    border: 1.5px dashed var(--border);
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    background: var(--light);
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .image-upload-area:hover { border-color: var(--gold); background: var(--gold-pale); }
+  .image-upload-area.has-image { border-style: solid; border-color: var(--gold); padding: 8px; }
+  .upload-hint {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--mid);
+  }
+  .upload-icon { font-size: 1.3rem; color: var(--border); }
+  .upload-ref {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .uploaded-img {
+    width: 100%;
+    max-height: 160px;
+    object-fit: cover;
+    border-radius: 3px;
+    display: none;
+  }
+  .uploaded-img.visible { display: block; }
+
+  .uploaded-vid {
+    width: 100%;
+    max-height: 200px;
+    border-radius: 3px;
+    display: none;
+    background: #000;
+  }
+  .uploaded-vid.visible { display: block; }
+
+  .reel-upload {
+    border-color: #8AAAC8;
+    background: #EBF0F7;
+  }
+  .reel-upload:hover { border-color: var(--reel); background: #D6E4F0; }
+  .reel-upload.has-image { border-style: solid; border-color: var(--reel); }
+  .reel-upload .upload-icon { color: var(--reel); }
+  .reel-upload .upload-ref { color: var(--reel); }
+  .img-controls {
+    display: none;
+    margin-top: 8px;
+    gap: 8px;
+    justify-content: center;
+  }
+  .img-controls.visible { display: flex; }
+  .img-btn {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--mid);
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 3px 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .img-btn:hover { background: var(--border); }
+  .img-btn.danger { color: var(--red-tag); border-color: #FBCCC8; }
+  .img-btn.danger:hover { background: var(--red-tag-bg); }
+  input[type="file"] { display: none; }
+
+  /* CAPTION TEXTAREA */
+  .caption-area {
+    width: 100%;
+    min-height: 80px;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    line-height: 1.6;
+    color: var(--charcoal);
+    resize: vertical;
+    background: var(--light);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .caption-area:focus { border-color: var(--gold); background: var(--white); }
+  .caption-area::placeholder { color: #BFB5AD; font-style: italic; }
+
+  /* HASHTAG AREA */
+  .hashtag-area {
+    width: 100%;
+    min-height: 52px;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    padding: 8px 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem;
+    color: var(--mahogany-light);
+    line-height: 1.6;
+    resize: vertical;
+    background: var(--light);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .hashtag-area:focus { border-color: var(--gold); background: var(--white); }
+  .hashtag-area::placeholder { color: #BFB5AD; font-style: italic; font-family: 'Montserrat', sans-serif; }
+
+  /* STORY NOTES */
+  .story-note {
+    font-size: 0.65rem;
+    color: var(--mid);
+    background: var(--light);
+    border-left: 2px solid var(--gold);
+    padding: 8px 12px;
+    border-radius: 0 3px 3px 0;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .story-note strong { color: var(--charcoal); font-weight: 600; }
+
+  .notes-area {
+    width: 100%;
+    min-height: 48px;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    padding: 8px 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem;
+    color: var(--charcoal);
+    line-height: 1.6;
+    resize: vertical;
+    background: var(--light);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .notes-area:focus { border-color: var(--gold); background: var(--white); }
+  .notes-area::placeholder { color: #BFB5AD; font-style: italic; }
+
+  /* EDIT ALERT */
+  .edit-alert {
+    background: #FFF8E6;
+    border: 1px solid #F0D080;
+    border-radius: 3px;
+    padding: 7px 12px;
+    font-size: 0.63rem;
+    color: #7A5A10;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0 16px 12px;
+  }
+  .edit-alert-icon { flex-shrink: 0; }
+
+  /* PRINT / EXPORT BUTTON */
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 60px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  .toolbar-title {
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-right: 8px;
+  }
+  .tb-btn {
+    padding: 7px 16px;
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--charcoal);
+    transition: all 0.15s;
+  }
+  .tb-btn:hover { background: var(--light); }
+  .tb-btn.primary {
+    background: var(--mahogany);
+    color: white;
+    border-color: var(--mahogany);
+  }
+  .tb-btn.primary:hover { background: var(--mahogany-light); }
+  .tb-btn.gold {
+    background: var(--gold);
+    color: white;
+    border-color: var(--gold);
+  }
+  .tb-btn.gold:hover { background: var(--gold-light); }
+  .stat-chips { margin-left: auto; display: flex; gap: 8px; }
+  .stat-chip {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    background: var(--light);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .stat-chip span { font-weight: 700; color: var(--charcoal); }
+
+  /* TRACK COLOR STRIPES */
+  .stripe-penthouse .card-top { background: var(--penthouse-bg); border-bottom-color: #C5D9EF; }
+  .stripe-redtag .card-top { background: #FDF0EE; border-bottom-color: #F5C6C0; }
+  .stripe-giftware .card-top { background: var(--giftware-bg); border-bottom-color: #B8DCC2; }
+  .stripe-product .card-top { background: var(--product-bg); border-bottom-color: #D9BFA8; }
+  .stripe-reel .card-top { background: #EBF0F7; border-bottom-color: #B8CADE; }
+
+  .stripe-penthouse { border-left: 4px solid var(--penthouse); }
+  .stripe-redtag { border-left: 4px solid var(--red-tag); }
+  .stripe-giftware { border-left: 4px solid var(--giftware); }
+  .stripe-product { border-left: 4px solid var(--product); }
+  .stripe-reel { border-left: 4px solid var(--reel); }
+
+  @media print {
+    .toolbar { display: none; }
+    .legend { padding: 12px 30px; }
+    .header { padding: 30px; }
+    .week-block { margin: 20px 30px 0; }
+    .post-card { break-inside: avoid; }
+    .section-body { display: block !important; }
+    .chevron { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 28px 24px 24px; flex-direction: column; gap: 16px; }
+    .header-right { text-align: left; }
+    .legend { padding: 14px 24px; }
+    .week-block { margin: 24px 16px 0; }
+    .toolbar { padding: 10px 16px; flex-wrap: wrap; }
+    .stat-chips { margin-left: 0; }
+    .posts-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>Mahogany <span>Masterpieces</span></h1>
+    <p>Social Media Campaign Planner &nbsp;·&nbsp; March – May 2026</p>
+  </div>
+  <div class="header-right">
+    <div><strong>Execution</strong> &nbsp;Abigail</div>
+    <div><strong>DM Responses</strong> &nbsp;Shayala</div>
+    <div><strong>Reports to</strong> &nbsp;Kishan & Ayesha</div>
+    <div><strong>Total Posts</strong> &nbsp;41 across 12 weeks</div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <span class="toolbar-title">Actions</span>
+  <button class="tb-btn primary" onclick="expandAll()">Expand All</button>
+  <button class="tb-btn" onclick="collapseAll()">Collapse All</button>
+  <button class="tb-btn gold" onclick="window.print()">Print / Export PDF</button>
+  <div class="stat-chips">
+    <div class="stat-chip">Total Posts <span>41</span></div>
+    <div class="stat-chip">Boosted <span>11</span></div>
+    <div class="stat-chip">Red Tag <span>8</span></div>
+    <div class="stat-chip">Weeks <span>12</span></div>
+  </div>
+</div>
+
+<div class="legend">
+  <span class="legend-label">Track</span>
+  <span class="badge b-penthouse"><span class="badge-dot"></span>Penthouse / Project</span>
+  <span class="badge b-redtag"><span class="badge-dot"></span>Red Tag Offer</span>
+  <span class="badge b-giftware"><span class="badge-dot"></span>Giftware</span>
+  <span class="badge b-product"><span class="badge-dot"></span>Product</span>
+  <span class="badge b-reel"><span class="badge-dot"></span>Reel</span>
+  <span class="boost-pill">● Boosted</span>
+</div>
+
+<div id="planner"></div>
+
+<script>
+const posts = [
+  // WEEK 1
+  { week:1, dates:"Mar 5 – Mar 10", num:1, date:"Thursday, 5 March", track:"REEL", badge:"b-reel stripe-reel", label:"Reel", title:"Penthouse Walkthrough Reel — Campaign Opener", ref:"REEL-1", format:"Reel 44s", boost:true, pin:true, storyNote:"Share reel to Stories with 'Watch this' prompt and bio link CTA. Pin REEL-1 to profile top.", imageRef:"REEL-1 — Walkthrough Video", captionHint:"Open on craft and space — this is the first impression of 12 weeks. Lead with the apartment, not the offer. Draw the viewer in with a detail, then reveal the scope.", hashtagHint:"#MahoganyMasterpieces #SapphireResidencies #BespokeInteriors #LuxuryFurnitureSriLanka #InteriorDesignColombo #CraftedInSriLanka" },
+
+  { week:1, dates:"Mar 5 – Mar 10", num:2, date:"Saturday, 7 March", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Corridor Opening Post", ref:"KPC09266 — PH-E-1", format:"Standalone", boost:true, storyNote:"Repost to Stories with DM prompt — 'Tell us what caught your eye.'", imageRef:"KPC09266 — PH-E-1", captionHint:"The corridor as a statement of intention. Lead with the craft detail — wainscoting, proportion, light. What does this space say before a word is spoken?", hashtagHint:"#MahoganyMasterpieces #SapphireResidencies #PenthouseLiving #BespokeJoinery #LuxuryInteriors #ColomboInteriors #CraftedFurniture" },
+
+  { week:1, dates:"Mar 5 – Mar 10", num:3, date:"Monday, 10 March", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Wainscoting Zoom Carousel", ref:"KPC09524→09266 — PH-F-7", format:"Carousel 2", boost:false, storyNote:"Repost to Stories with DM prompt.", imageRef:"KPC09524 (wide) + KPC09266 (detail zoom)", captionHint:"Start broad — the panel rhythm and proportion. Slide 2 pulls into the surface. Wainscoting done at this scale is architecture, not decoration.", hashtagHint:"#MahoganyMasterpieces #BespokeJoinery #WoodworkDetail #InteriorCraft #LuxuryHome #SapphireResidencies" },
+
+  // WEEK 2
+  { week:2, dates:"Mar 12 – Mar 17", num:4, date:"Thursday, 12 March", track:"RED TAG", badge:"b-redtag stripe-redtag", label:"Red Tag", title:"Red Tag Launch — Festive Collection", ref:"RT-01", format:"Carousel + closing slide", boost:true, storyNote:"Boost Story as well as feed post. Include showroom address, phone number, DM prompt, Open Sundays note.", imageRef:"Red tag product carousel — 4–5 product slides + MM logo / offer closing slide", captionHint:"Warm open — acknowledge the festive season (Ramadan, Easter, Avurudu). Introduce the Red Tag offer: exclusive festive privileges, limited time, while stocks last. Complimentary branded velvet gift bag with qualifying purchase. End with address and phone. Never mention specific prices or discount figures.", hashtagHint:"#MahoganyMasterpieces #RedTag #FestiveOffers #Ramadan2026 #Easter2026 #Avurudu2026 #LuxuryFurnitureColombo #ShowroomColombo #OpenSundays" },
+
+  { week:2, dates:"Mar 12 – Mar 17", num:5, date:"Saturday, 14 March", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Dusk Living Room", ref:"KPC09564 — PH-B-1", format:"Standalone", boost:true, storyNote:"Repost to Stories with DM prompt. Strong atmospheric post — run for 3–4 days in Stories.", imageRef:"KPC09564 — PH-B-1 (Dusk Living Room)", captionHint:"Lead with light — the hour, the warmth, the way the timber reads at dusk. This is the strongest atmospheric still in the campaign. Don't over-explain. Let the image carry the weight.", hashtagHint:"#MahoganyMasterpieces #SapphireResidencies #LivingRoomDesign #LuxuryLiving #DuskInteriors #BespokeHome #ColomboLuxury" },
+
+  { week:2, dates:"Mar 12 – Mar 17", num:6, date:"Monday, 17 March", track:"RED TAG", badge:"b-redtag stripe-redtag", label:"Red Tag", title:"Red Tag — Living Room Feature", ref:"RT-02", format:"Carousel", boost:false, storyNote:"Repost to Stories with phone number, swipe-up / DM prompt, Open Sundays.", imageRef:"Helena sofa + Stanley occasional tables + Harpes Display Cabinet — red tag image set", captionHint:"Open with the beauty of the space, then introduce the pieces: Helena collection, Stanley occasional pieces, Harpes Display Cabinet. Festive privileges frame — limited time, while stocks last. Address and phone in caption. Fabric costs noted as separate.", hashtagHint:"#MahoganyMasterpieces #RedTag #HelenaCollection #LivingRoomFurniture #BespokeSofa #FestivePrivileges #ShowroomColombo" },
+
+  // WEEK 3 (part 1)
+  { week:3, dates:"Mar 19 – Mar 28", num:7, date:"Thursday, 19 March", track:"PRODUCT", badge:"b-product stripe-product", label:"Product", title:"Living Room Lifestyle Hero", ref:"PROD-LIFE-1", format:"Standalone", boost:true, storyNote:"Poll story — 'Which finish would you choose?' Timber or fabric options. Log audience responses for weekly report.", imageRef:"PROD-LIFE-1 — Aspen Sofa + Belfast Chair + Reno Ottoman lifestyle shot", captionHint:"This is the main campaign voice — authoritative, craft-led, never promotional. Feature the trio: Aspen sofa, Belfast chair, Reno ottoman. A room composed with intention. No offer mention.", hashtagHint:"#MahoganyMasterpieces #AspanSofa #BelfastChair #RenoOttoman #BespokeFurniture #LuxuryLivingRoom #CraftedSriLanka" },
+
+  { week:3, dates:"Mar 19 – Mar 28", num:8, date:"Saturday, 21 March", track:"RED TAG", badge:"b-redtag stripe-redtag", label:"Red Tag", title:"Red Tag — Dining Room Feature", ref:"RT-03", format:"Carousel", boost:false, storyNote:"Repost to Stories with phone number, DM prompt, Open Sundays.", imageRef:"Amsterdam 6-seater + Augustus 10-seater — red tag dining image set", captionHint:"Lead with the dining room as the heart of festive gathering. Feature Amsterdam 6-seater and Augustus 10-seater. Note fabric costs are separate for dining sets. Festive privileges frame — limited time. Address and phone.", hashtagHint:"#MahoganyMasterpieces #RedTag #DiningTable #AmsterdamCollection #AugustusCollection #FestiveDining #ShowroomColombo" },
+
+  { week:3, dates:"Mar 19 – Mar 28", num:9, date:"Monday, 24 March", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Home Bar Open Wide", ref:"KPC09579 — PH-B-2", format:"Standalone", boost:true, storyNote:"High shareability post — run in Stories for 3–4 days. DM prompt: 'Would you have this in your home?'", imageRef:"KPC09579 — PH-B-2 (Home Bar open wide shot)", captionHint:"The concealed bar is the conversation-starter of this apartment. Write to the reveal — the moment the cabinet opens. High shareability and comment potential. Craft-led voice throughout.", hashtagHint:"#MahoganyMasterpieces #SapphireResidencies #HomeBar #BespokeBar #ConcealedFurniture #LuxuryHome #InteriorDesignColombo" },
+
+  { week:3, dates:"Mar 19 – Mar 28", num:10, date:"Wednesday, 26 March", track:"RED TAG", badge:"b-redtag stripe-redtag", label:"Red Tag", title:"Red Tag — Bedroom Feature", ref:"RT-04", format:"Carousel", boost:false, storyNote:"Repost to Stories with phone number, DM prompt, Open Sundays.", imageRef:"Randall Collection bedroom images — red tag set", captionHint:"Open with the bedroom as sanctuary. Feature the Randall collection. Festive privileges frame — a new bedroom for a new season. Address and phone in caption.", hashtagHint:"#MahoganyMasterpieces #RedTag #RandallCollection #BedroomFurniture #BespokeBedroom #FestivePrivileges #ColomboFurniture" },
+
+  { week:3, dates:"Mar 19 – Mar 28", num:11, date:"Friday, 28 March", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Bar Cabinet Reveal", ref:"BAR REVEAL — KPC09404→09394→09399", format:"Carousel 3", boost:false, storyNote:"Repost to Stories. Use the 3-slide reveal sequence — closed, opening, open.", imageRef:"KPC09404 (closed) → KPC09394 (opening) → KPC09399 (open)", captionHint:"Three slides, one reveal. Write the sequence — the stillness of the closed form, the moment of transformation, the fully realised bar. This is storytelling through furniture.", hashtagHint:"#MahoganyMasterpieces #BarCabinet #BespokeJoinery #CraftedFurniture #SapphireResidencies #HomeDesign" },
+
+  // WEEK 3/4 bridge
+  { week:3, dates:"Mar 19 – Mar 28", num:12, date:"Monday, 31 March", track:"GIFTWARE", badge:"b-giftware stripe-giftware", label:"Giftware", title:"Jewellery Box Reveal", ref:"GIFT-J", format:"Carousel 2", boost:true, storyNote:"Repost to Stories. DM prompt: 'Ask us about personalisation.' Link in bio.", imageRef:"Jewelry_box1 → Jewlry_box2 (carousel: lifestyle + detail)", captionHint:"Introduce the MM giftware range as a distinct luxury gifting category. The jewellery box as a statement of craft at a personal scale. Who is this made for? Speak to the gift-giver as much as the recipient.", hashtagHint:"#MahoganyMasterpieces #MMGiftware #LuxuryGifts #JewelleryBox #BespokeGifting #HandcraftedSriLanka #GiftIdeas" },
+
+  // WEEK 4
+  { week:4, dates:"Apr 2 – Apr 11", num:13, date:"Wednesday, 2 April", track:"PRODUCT", badge:"b-product stripe-product", label:"Product", title:"Belfast Chair", ref:"PROD-BF", format:"Carousel 3", boost:true, storyNote:"Poll story: 'Velvet or leather — which finish?' Log responses for Abigail's weekly report.", imageRef:"Belfast × 3 images (PROD-BF carousel)", captionHint:"The Belfast Chair as a study in proportion. Lead with the silhouette, then the detail — the way the arm joins the back, the depth of the seat. Authoritative, craft-led.", hashtagHint:"#MahoganyMasterpieces #BelfastChair #BespokeChair #UpholsteredFurniture #LuxurySeating #CraftedFurniture" },
+
+  { week:4, dates:"Apr 2 – Apr 11", num:14, date:"Saturday, 5 April", track:"RED TAG", badge:"b-redtag stripe-redtag", label:"Red Tag", title:"Red Tag — Giftware Feature", ref:"RT-05", format:"Carousel", boost:false, storyNote:"Repost to Stories with phone number, DM prompt, Open Sundays.", imageRef:"Coaster set + wine rack + jewellery box — red tag giftware set", captionHint:"The Red Tag festive offer extends to giftware. Coaster set, wine rack, jewellery box — each a considered piece. Complimentary branded velvet gift bag with qualifying purchase. Address and phone.", hashtagHint:"#MahoganyMasterpieces #RedTag #MMGiftware #FestiveGifts #LuxuryGifting #GiftIdeas #ShowroomColombo #OpenSundays" },
+
+  { week:4, dates:"Apr 2 – Apr 11", num:15, date:"Monday, 7 April", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Bar Stools — Portrait + Detail", ref:"KPC09374→KPC09384 — PH-C-6/12", format:"Carousel 2", boost:true, storyNote:"Best craft detail post of the campaign — run Story for 3–4 days.", imageRef:"KPC09374 (portrait) → KPC09384 (detail)", captionHint:"The bar stool as a craft object. Slide 1: the full portrait — presence and scale. Slide 2: the detail — the joint, the grain, the finish. Write to the eye that notices.", hashtagHint:"#MahoganyMasterpieces #BarStools #CraftDetail #BespokeJoinery #SapphireResidencies #WoodGrain #InteriorCraft" },
+
+  { week:4, dates:"Apr 2 – Apr 11", num:16, date:"Wednesday, 9 April", track:"RED TAG", badge:"b-redtag stripe-redtag", label:"Red Tag", title:"Red Tag — Occasional / Accent Feature", ref:"RT-06", format:"Carousel", boost:false, storyNote:"Repost to Stories with phone number, DM prompt, Open Sundays.", imageRef:"Best lifestyle product shot from red tag set — occasional / accent pieces", captionHint:"The finishing pieces — the occasional table, the accent detail that completes a room. Festive privileges frame. Last few days of the offer approaching. Address and phone.", hashtagHint:"#MahoganyMasterpieces #RedTag #OccasionalFurniture #AccentPiece #FestivePrivileges #LimitedOffer #ColomboFurniture" },
+
+  { week:4, dates:"Apr 2 – Apr 11", num:17, date:"Friday, 11 April", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Display Cabinets — Corinthian", ref:"KPC09449 — PH-C-17", format:"Standalone", boost:true, storyNote:"Repost to Stories with DM prompt: 'Enquire about bespoke joinery for your home.'", imageRef:"KPC09449 — PH-C-17 (Display Cabinets, Corinthian detail)", captionHint:"Bespoke joinery at the highest level. Write to the architects and designers in the audience — this is the work that earns a commission. Authoritative. The Corinthian column detail as a signature.", hashtagHint:"#MahoganyMasterpieces #SapphireResidencies #BespokeJoinery #DisplayCabinet #ArchitecturalFurniture #InteriorDesign #ColomboArchitects" },
+
+  // WEEK 5
+  { week:5, dates:"Apr 14 – Apr 23", num:18, date:"Monday, 14 April", track:"PRODUCT", badge:"b-product stripe-product", label:"Product", title:"Aurora Chaise & Sofa", ref:"PROD-AU", format:"Carousel 2", boost:false, storyNote:"Poll story: 'Chaise or classic sofa — which suits your space?' Log responses.", imageRef:"Aurora × 2 images (PROD-AU carousel)", captionHint:"The Aurora range. Two pieces, one design language. Chaise first for the drama, sofa second for the room. Lead with form, then invite the enquiry.", hashtagHint:"#MahoganyMasterpieces #AuroraCollection #ChaiseLongue #BespokeSofa #LuxurySeating #ShowroomColombo" },
+
+  { week:5, dates:"Apr 14 – Apr 23", num:19, date:"Wednesday, 16 April", track:"RED TAG", badge:"b-redtag stripe-redtag", label:"Red Tag", title:"Red Tag — Mid-Campaign Reminder", ref:"RT-07", format:"Standalone", boost:false, storyNote:"Repost to Stories with countdown element — 'Offer ends April 10, don't miss out.' Phone number prominent.", imageRef:"Best red tag lifestyle image from earlier in the campaign", captionHint:"Mid-point reminder — warm, aspirational, gently urgent. The offer is still live. Recap the key pieces and the festive privileges. Address and phone. Open Sundays.", hashtagHint:"#MahoganyMasterpieces #RedTag #FestivePrivileges #LimitedOffer #LuxuryFurnitureColombo #OpenSundays" },
+
+  { week:5, dates:"Apr 14 – Apr 23", num:20, date:"Friday, 18 April", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Accent Chair Study", ref:"KPC09478→KPC09489 — PH-C-8/9", format:"Carousel 2", boost:false, storyNote:"Repost to Stories. DM prompt: 'Ask us about fabric and finish options.'", imageRef:"KPC09478 (full) → KPC09489 (detail)", captionHint:"The accent chair as a considered decision. Carousel: full chair, then the upholstery detail. Write to the weight and scale of the piece in the room — how it anchors without dominating.", hashtagHint:"#MahoganyMasterpieces #AccentChair #SapphireResidencies #BespokeUpholstery #InteriorDetail #LuxuryChair" },
+
+  { week:5, dates:"Apr 14 – Apr 23", num:21, date:"Monday, 21 April", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Carved Coffee Table Base", ref:"KPC09529 — PH-C-19", format:"Standalone", boost:false, storyNote:"Repost to Stories. Focus on craft detail in the Story caption.", imageRef:"KPC09529 — PH-C-19 (Coffee Table, carved base detail)", captionHint:"The base of the coffee table — where the carving lives. Write close to the detail. What does it take to execute this? How long? This is the craft narrative at its most intimate.", hashtagHint:"#MahoganyMasterpieces #CraftDetail #CarvedFurniture #CoffeeTable #WoodCarving #BespokeJoinery #MahoganyFurniture" },
+
+  { week:5, dates:"Apr 14 – Apr 23", num:22, date:"Wednesday, 23 April", track:"GIFTWARE", badge:"b-giftware stripe-giftware", label:"Giftware", title:"Wine Rack", ref:"GIFT-WR", format:"Carousel 2", boost:false, storyNote:"Repost to Stories. DM prompt for gifting enquiries.", imageRef:"wine_rack1 → winde_rack (carousel: lifestyle + close detail)", captionHint:"The MM wine rack as a gift object. Who gives this, and to whom? Write to the ritual of the gift. Slide 2 on the craft detail — the joinery, the finish.", hashtagHint:"#MahoganyMasterpieces #MMGiftware #WineRack #LuxuryGift #HandcraftedGifts #BespokeGifting #GiftIdeas" },
+
+  // WEEK 6
+  { week:6, dates:"Apr 25 – May 5", num:23, date:"Friday, 25 April", track:"RED TAG", badge:"b-redtag stripe-redtag", label:"Red Tag", title:"Red Tag — Final Days / Deadline Reminder", ref:"RT-08", format:"Standalone / Carousel", boost:true, storyNote:"Boost Story as well as feed post. Retarget RT-01 audience + showroom website visitors. Countdown urgency — 'Final days.' Phone number, address, Open Sundays.", imageRef:"Best product lifestyle shot or carousel of top Red Tag pieces", captionHint:"Final days of the Red Tag festive offer. Warm but urgent. Recap the standout pieces — Helena, Augustus, Randall, giftware selection. Complimentary branded velvet gift bag with qualifying purchase. While stocks last. Address, phone, DM. Open Sundays.", hashtagHint:"#MahoganyMasterpieces #RedTag #FinalDays #FestivePrivileges #LimitedOffer #LuxuryFurnitureColombo #OpenSundays #Avurudu2026" },
+
+  { week:6, dates:"Apr 25 – May 5", num:24, date:"Monday, 28 April", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Master Bedroom — Blanket Box", ref:"KPC09306 — PH-F-1", format:"Standalone", boost:false, storyNote:"Repost to Stories. DM prompt: 'Ask us about the bedroom collection.'", imageRef:"KPC09306 — PH-F-1 (Blanket Box, Master Bedroom)", captionHint:"The blanket box at the foot of the bed — the detail that tells you this space was considered completely. Write to the function and the craft together. Small scale, large meaning.", hashtagHint:"#MahoganyMasterpieces #SapphireResidencies #BlanketBox #BedroomDetail #BespokeBedroom #CraftedFurniture" },
+
+  { week:6, dates:"Apr 25 – May 5", num:25, date:"Wednesday, 30 April", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Side Table — Timber Grain Detail", ref:"KPC09454 — PH-C-17", format:"Standalone", boost:false, storyNote:"Repost to Stories. Caption the grain story in Stories.", imageRef:"KPC09454 — Timber Grain Detail (Side Table)", captionHint:"The grain tells the story of the tree. Write to this — where mahogany comes from, the life in the wood, what it means to work with a material that carries time. Craft-led, almost contemplative.", hashtagHint:"#MahoganyMasterpieces #TimberGrain #MahoganyWood #CraftedFurniture #WoodDetail #NaturalMaterial #SustainableCraft" },
+
+  { week:6, dates:"Apr 25 – May 5", num:26, date:"Friday, 2 May", track:"PRODUCT", badge:"b-product stripe-product", label:"Product", title:"Chester Bedroom Collection", ref:"PROD-CH", format:"Carousel 3", boost:true, storyNote:"Poll story: 'Which finish — natural or dark stain?' Bedroom is highest enquiry category — log all DMs carefully.", imageRef:"Chester × 3 images (PROD-CH carousel)", captionHint:"The Chester Bedroom collection. Three slides — the full room, then the pieces: bed, storage, detail. Lead with the atmosphere of a room that has been composed. The bedroom as the most personal space in the home.", hashtagHint:"#MahoganyMasterpieces #ChesterBedroom #BedRoomFurniture #BespokeBedroom #LuxuryBedroom #ColomboFurniture #CraftedSriLanka" },
+
+  { week:6, dates:"Apr 25 – May 5", num:27, date:"Monday, 5 May", track:"GIFTWARE", badge:"b-giftware stripe-giftware", label:"Giftware", title:"Coaster Set", ref:"GIFT-C", format:"Carousel 2", boost:false, storyNote:"Repost to Stories. DM prompt for gifting enquiries.", imageRef:"coasters → coasters_1 (carousel: lifestyle + detail)", captionHint:"The coaster set as an entry point to the MM giftware world. Write to the ritual of a well-set surface — the care that goes into the small things. Craft at an accessible scale, uncompromised quality.", hashtagHint:"#MahoganyMasterpieces #MMGiftware #CoasterSet #TableAccessories #LuxuryGift #BespokeGifting #HandcraftedSriLanka" },
+
+  // WEEK 7
+  { week:7, dates:"May 7 – May 9", num:28, date:"Wednesday, 7 May", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Sapphire Key Box Reveal", ref:"KEY BOX — KPC09759→KPC09754", format:"Carousel 2", boost:true, storyNote:"Best brand story post of the campaign — high share potential. DM prompt: 'Enquire about bespoke gifting for your project.'", imageRef:"KPC09759 (exterior) → KPC09754 (interior — edited) — KEY BOX carousel", captionHint:"The key box made for Sapphire Residencies — the bridge between the penthouse commission and the MM giftware world. This is the post that unites both narratives. Write to the meaning of a key, the ritual of a handover, the craft of the object that holds it.", hashtagHint:"#MahoganyMasterpieces #SapphireResidencies #KeyBox #BespokeGifting #CorporateGifts #MMGiftware #LuxuryCraft #HandcraftedSriLanka" },
+
+  // WEEK 8
+  { week:8, dates:"May 9 – May 14", num:29, date:"Friday, 9 May", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Entrance Foyer", ref:"KPC09276 — PH-A-5", format:"Standalone", boost:false, storyNote:"Repost to Stories. Caption: 'The first impression.'", imageRef:"KPC09276 — PH-A-5 (Entrance Foyer)", captionHint:"The foyer is the first thing you experience. Write to the threshold — what this space communicates before you see the rest of the apartment. Proportion, light, material.", hashtagHint:"#MahoganyMasterpieces #SapphireResidencies #EntranceFoyer #InteriorDesign #LuxuryApartment #BespokeInteriors #ColomboLuxury" },
+
+  { week:8, dates:"May 9 – May 14", num:30, date:"Monday, 12 May", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Dressing Room", ref:"KPC09664 — PH-D-2", format:"Standalone", boost:false, storyNote:"Repost to Stories. DM prompt: 'Enquire about bespoke dressing rooms.'", imageRef:"KPC09664 — PH-D-2 (Dressing Room)", captionHint:"The dressing room as the private luxury of the apartment. Write to the person who inhabits this space — what it is to begin and end the day here. The joinery is the room.", hashtagHint:"#MahoganyMasterpieces #SapphireResidencies #DressingRoom #BespokeWardrobe #LuxuryInteriors #BespokeJoinery" },
+
+  { week:8, dates:"May 9 – May 14", num:31, date:"Wednesday, 14 May", track:"PRODUCT", badge:"b-product stripe-product", label:"Product", title:"Huston Dresser", ref:"PROD-HU", format:"Carousel 3", boost:false, storyNote:"Poll story: 'Mirror or no mirror — which works in your space?' Log responses.", imageRef:"Huston × 3 images (PROD-HU carousel)", captionHint:"The Huston Dresser. Three slides across the piece — the full front, the drawer detail, the finish. Write to the dresser as furniture that earns its place across generations.", hashtagHint:"#MahoganyMasterpieces #HustonDresser #BedroomFurniture #BespokeDresser #CraftedFurniture #MahoganyWood #ShowroomColombo" },
+
+  // WEEK 9
+  { week:9, dates:"May 16 – May 23", num:32, date:"Friday, 16 May", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Gold Bedroom", ref:"KPC09744 — PH-C-11", format:"Standalone", boost:false, storyNote:"Repost to Stories. Ask: 'Which bedroom in this apartment is your favourite so far?'", imageRef:"KPC09744 — PH-C-11 (Gold Bedroom)", captionHint:"The gold bedroom — the warmth of the palette, the weight of the headboard, the way the light reads against the finish. Write to the mood of the room, not a list of pieces.", hashtagHint:"#MahoganyMasterpieces #SapphireResidencies #GoldBedroom #LuxuryBedroom #BespokeBedroom #InteriorDesign" },
+
+  { week:9, dates:"May 16 – May 23", num:33, date:"Monday, 19 May", track:"PENTHOUSE", badge:"b-penthouse stripe-penthouse", label:"Penthouse", title:"Dressing Table", ref:"KPC09724 — PH-C-20", format:"Standalone", boost:false, storyNote:"Repost to Stories. DM prompt: 'Ask about bespoke dressing tables for your bedroom.'", imageRef:"KPC09724 — PH-C-20 (Dressing Table — edited, crop left edge)", captionHint:"The dressing table as an act of design for one person. Write to the intimacy of the piece — the mirror, the surface, the storage. A piece designed to be used every day, for decades.", hashtagHint:"#MahoganyMasterpieces #DressingTable #BespokeBedroom #SapphireResidencies #LuxuryFurniture #CraftedFurniture" },
+
+  { week:9, dates:"May 16 – May 23", num:34, date:"Wednesday, 21 May", track:"PRODUCT", badge:"b-product stripe-product", label:"Product", title:"Derby Display Cabinet", ref:"PROD-DD", format:"Carousel 3", boost:false, storyNote:"Repost to Stories. Poll: 'Display cabinet — closed or open shelving?' Log for report.", imageRef:"Derby × 3 images (PROD-DD carousel)", captionHint:"The Derby Display Cabinet. What is displayed matters as much as how. Write to the cabinet as a frame for the things that mean something — books, objects, art. Three slides across the piece.", hashtagHint:"#MahoganyMasterpieces #DerbyDisplayCabinet #DisplayCabinet #BespokeJoinery #LivingRoomFurniture #CraftedFurniture" },
+
+  { week:9, dates:"May 16 – May 23", num:35, date:"Friday, 23 May", track:"GIFTWARE", badge:"b-giftware stripe-giftware", label:"Giftware", title:"Watch Box", ref:"GIFT-W", format:"Carousel 2", boost:false, storyNote:"Repost to Stories. DM prompt for bespoke gifting enquiries.", imageRef:"watchbox → watchbox1 (carousel: lifestyle + open detail)", captionHint:"The watch box as a portrait of the collector. Slide 1: the closed object — weight, proportion, finish. Slide 2: opened — the interior detail, the precision of the compartments. Write to the person who keeps time carefully.", hashtagHint:"#MahoganyMasterpieces #MMGiftware #WatchBox #WatchCollector #LuxuryGift #BespokeGifting #HandcraftedSriLanka" },
+
+  // WEEK 10
+  { week:10, dates:"May 26 – May 28", num:36, date:"Monday, 26 May", track:"PRODUCT", badge:"b-product stripe-product", label:"Product", title:"Meridian Wall Panel", ref:"PROD-ARCH-1", format:"Standalone", boost:false, storyNote:"Begin Stories countdown from May 26 — 10 days to World Environment Day June 5. Plant A Plant teaser.", imageRef:"PROD-ARCH-1 — Meridian Wall Panel (standalone)", captionHint:"The wall panel as an architectural intervention. Write to the room-making quality of the Meridian panel — how a surface becomes a statement, how texture changes a space. Begin seeding the June environmental narrative: MM builds things that last.", hashtagHint:"#MahoganyMasterpieces #MeridianWallPanel #ArchitecturalFurniture #WallPanelling #BespokeInteriors #CraftedSriLanka" },
+
+  { week:10, dates:"May 26 – May 28", num:37, date:"Wednesday, 28 May", track:"PRODUCT", badge:"b-product stripe-product", label:"Product", title:"Yorkshire Bar", ref:"PROD-BAR-1", format:"Standalone", boost:false, storyNote:"Continue Stories countdown to World Environment Day. Stories: 'Something special is coming June 5.'", imageRef:"PROD-BAR-1 — Yorkshire Bar (standalone)", captionHint:"The Yorkshire Bar. Write to what it means to have a bar that belongs to the room — not installed, but composed. The craftsmanship of hospitality at home. Continue seeding June sustainability angle in the caption close.", hashtagHint:"#MahoganyMasterpieces #YorkshireBar #HomeBar #BespokeBar #LuxuryInteriors #CraftedFurniture #ShowroomColombo" },
+
+  // WEEK 11
+  { week:11, dates:"May 30", num:38, date:"Friday, 30 May", track:"GIFTWARE", badge:"b-giftware stripe-giftware", label:"Giftware", title:"Butler Tray", ref:"GIFT-T", format:"Carousel 2", boost:false, storyNote:"Continue Stories countdown to World Environment Day. DM prompt for gifting enquiries.", imageRef:"tray → tray2 (carousel: lifestyle + detail)", captionHint:"The butler tray — the final giftware post of the campaign. Write to the tray as a piece about service and generosity — hosting well, sharing a space. The MM giftware world in one object.", hashtagHint:"#MahoganyMasterpieces #MMGiftware #ButlerTray #LuxuryGift #BespokeGifting #CraftedSriLanka #GiftIdeas" },
+
+  // WEEK 12
+  { week:12, dates:"May 31 – Jun 1", num:39, date:"Saturday, 31 May / Sunday, 1 June", track:"REEL", badge:"b-reel stripe-reel", label:"Reel", title:"Penthouse Walkthrough Reel — Campaign Close", ref:"REEL-2", format:"Reel 44s", boost:true, storyNote:"Share reel to Stories with retrospective framing — 'Twelve weeks. One apartment. Many hands.' Link in bio. Retargets all who engaged during Mar–May campaign.", imageRef:"REEL-2 — Same walkthrough video as REEL-1, new caption", captionHint:"The same reel, twelve weeks later. The caption is the difference. Write as a retrospective — not a launch, but a closing. What has been shared over these weeks? What does this apartment represent for MM? And close with the first note of June: the craft that respects the forest. Seed World Environment Day and Plant A Plant.", hashtagHint:"#MahoganyMasterpieces #SapphireResidencies #BespokeInteriors #PenthouseLiving #CraftedSriLanka #PlantAPlant #WorldEnvironmentDay #LuxuryFurnitureColombo" },
+];
+
+function getTrackClass(track) {
+  if (track === "RED TAG") return "b-redtag stripe-redtag";
+  if (track === "PENTHOUSE") return "b-penthouse stripe-penthouse";
+  if (track === "GIFTWARE") return "b-giftware stripe-giftware";
+  if (track === "PRODUCT") return "b-product stripe-product";
+  if (track === "REEL") return "b-reel stripe-reel";
+  return "";
+}
+
+function getBadgeLabel(track) {
+  const map = { "RED TAG": "Red Tag", "PENTHOUSE": "Penthouse", "GIFTWARE": "Giftware", "PRODUCT": "Product", "REEL": "Reel" };
+  return map[track] || track;
+}
+
+function renderBadge(track) {
+  const bClass = track === "RED TAG" ? "b-redtag" : track === "PENTHOUSE" ? "b-penthouse" : track === "GIFTWARE" ? "b-giftware" : track === "PRODUCT" ? "b-product" : "b-reel";
+  const label = getBadgeLabel(track);
+  return `<span class="badge ${bClass}"><span class="badge-dot"></span>${label}</span>`;
+}
+
+function toggleSection(el) {
+  el.classList.toggle('open');
+  const body = el.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+function expandAll() {
+  document.querySelectorAll('.section-label').forEach(el => {
+    el.classList.add('open');
+    el.nextElementSibling.classList.add('open');
+  });
+}
+
+function collapseAll() {
+  document.querySelectorAll('.section-label').forEach(el => {
+    el.classList.remove('open');
+    el.nextElementSibling.classList.remove('open');
+  });
+}
+
+function handleImageUpload(input, cardId) {
+  const file = input.files[0];
+  if (!file) return;
+  const isVideo = file.type.startsWith('video/');
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const area = document.getElementById(`upload-area-${cardId}`);
+    const hint = document.getElementById(`upload-hint-${cardId}`);
+    const controls = document.getElementById(`img-controls-${cardId}`);
+    const img = document.getElementById(`img-preview-${cardId}`);
+    const vid = document.getElementById(`vid-preview-${cardId}`);
+    if (img) { img.src = ''; img.classList.remove('visible'); }
+    if (vid) { vid.src = ''; vid.classList.remove('visible'); }
+    if (isVideo && vid) {
+      vid.src = e.target.result;
+      vid.classList.add('visible');
+      const nameEl = document.getElementById(`file-name-${cardId}`);
+      if (nameEl) nameEl.textContent = file.name;
+    } else if (img) {
+      img.src = e.target.result;
+      img.classList.add('visible');
+    }
+    area.classList.add('has-image');
+    if (hint) hint.style.display = 'none';
+    controls.classList.add('visible');
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeImage(cardId) {
+  const img = document.getElementById(`img-preview-${cardId}`);
+  const vid = document.getElementById(`vid-preview-${cardId}`);
+  const area = document.getElementById(`upload-area-${cardId}`);
+  const hint = document.getElementById(`upload-hint-${cardId}`);
+  const controls = document.getElementById(`img-controls-${cardId}`);
+  const input = document.getElementById(`file-input-${cardId}`);
+  if (img) { img.src = ''; img.classList.remove('visible'); }
+  if (vid) { vid.src = ''; vid.classList.remove('visible'); }
+  area.classList.remove('has-image');
+  if (hint) hint.style.display = '';
+  controls.classList.remove('visible');
+  input.value = '';
+}
+
+function buildCard(post) {
+  const id = `post-${post.num}`;
+  const trackClass = getTrackClass(post.track);
+  const editHtml = post.editAlert ? `<div class="edit-alert"><span class="edit-alert-icon">⚠️</span><span>${post.editAlert}</span></div>` : '';
+  const pinHtml = post.pin ? `<span class="boost-pill" style="background:#1A3A5C">📌 PIN</span>` : '';
+  const boostHtml = post.boost ? `<span class="boost-pill">● Boost</span>` : '';
+
+  return `
+  <div class="post-card ${trackClass}" id="${id}">
+    <div class="card-top">
+      <div class="card-meta">
+        <span class="post-date">${post.date}</span>
+        <span class="post-number">Post #${post.num} of 41</span>
+      </div>
+      <div class="card-tags">
+        ${renderBadge(post.track)}
+        <div style="display:flex;gap:4px;margin-top:3px">${boostHtml}${pinHtml}</div>
+      </div>
+    </div>
+    <div class="card-title">${post.title}</div>
+    <div class="card-ref">${post.ref}</div>
+    <span class="card-format">${post.format}</span>
+    ${editHtml}
+
+    <!-- IMAGE / VIDEO SECTION -->
+    <div class="card-section">
+      <div class="section-label" onclick="toggleSection(this)">
+        <span class="section-icon">${post.track === 'REEL' ? '🎬' : '🖼'}</span> ${post.track === 'REEL' ? 'Video / Reel' : 'Image / Asset'}
+        <span class="chevron">▾</span>
+      </div>
+      <div class="section-body">
+        <div style="font-size:0.62rem;letter-spacing:0.08em;color:var(--mid);margin-bottom:8px;font-style:italic">${post.imageRef}</div>
+        <div class="image-upload-area ${post.track === 'REEL' ? 'reel-upload' : ''}" id="upload-area-${id}" onclick="document.getElementById('file-input-${id}').click()">
+          <img class="uploaded-img" id="img-preview-${id}" src="" alt="">
+          ${post.track === 'REEL' ? `<video class="uploaded-vid" id="vid-preview-${id}" controls></video>` : ''}
+          <div id="upload-hint-${id}">
+            <span class="upload-icon">${post.track === 'REEL' ? '▶' : '＋'}</span>
+            <span class="upload-hint">${post.track === 'REEL' ? 'Click to upload reel video (MP4 / MOV)' : 'Click to upload image'}</span>
+            <span class="upload-ref">${post.ref}${post.track === 'REEL' ? ' · 44s' : ''}</span>
+          </div>
+        </div>
+        <div class="img-controls" id="img-controls-${id}">
+          ${post.track === 'REEL' ? `<span class="file-name-label" id="file-name-${id}" style="font-size:0.6rem;color:var(--mid);letter-spacing:0.06em;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>` : ''}
+          <button class="img-btn" onclick="document.getElementById('file-input-${id}').click()">${post.track === 'REEL' ? 'Replace Video' : 'Replace'}</button>
+          <button class="img-btn danger" onclick="removeImage('${id}')">Remove</button>
+        </div>
+        <input type="file" id="file-input-${id}" accept="${post.track === 'REEL' ? 'video/*' : 'image/*'}" onchange="handleImageUpload(this, '${id}')">
+      </div>
+    </div>
+
+    <!-- CAPTION SECTION -->
+    <div class="card-section">
+      <div class="section-label" onclick="toggleSection(this)">
+        <span class="section-icon">✍</span> Caption
+        <span class="chevron">▾</span>
+      </div>
+      <div class="section-body">
+        <div style="font-size:0.6rem;letter-spacing:0.08em;color:var(--mid);margin-bottom:6px;font-style:italic">${post.captionHint}</div>
+        <textarea class="caption-area" placeholder="Write caption here…"></textarea>
+        <div style="font-size:0.58rem;letter-spacing:0.08em;color:var(--mid);margin-top:4px;text-align:right">Character count: <span id="cc-${id}">0</span></div>
+      </div>
+    </div>
+
+    <!-- HASHTAGS SECTION -->
+    <div class="card-section">
+      <div class="section-label" onclick="toggleSection(this)">
+        <span class="section-icon">#</span> Hashtags
+        <span class="chevron">▾</span>
+      </div>
+      <div class="section-body">
+        <textarea class="hashtag-area" placeholder="${post.hashtagHint}">${post.hashtagHint}</textarea>
+      </div>
+    </div>
+
+    <!-- STORY SECTION -->
+    <div class="card-section">
+      <div class="section-label" onclick="toggleSection(this)">
+        <span class="section-icon">◎</span> Story Notes
+        <span class="chevron">▾</span>
+      </div>
+      <div class="section-body">
+        <div class="story-note">${post.storyNote}</div>
+        <textarea class="notes-area" placeholder="Add story copy, swipe-up link, or additional notes…"></textarea>
+      </div>
+    </div>
+  </div>`;
+}
+
+function buildWeeks() {
+  const weekData = {};
+  posts.forEach(p => {
+    if (!weekData[p.week]) weekData[p.week] = { dates: p.dates, posts: [] };
+    weekData[p.week].posts.push(p);
+  });
+
+  const container = document.getElementById('planner');
+  Object.keys(weekData).forEach(wk => {
+    const w = weekData[wk];
+    const isRedTagWeek = w.posts.some(p => p.track === "RED TAG");
+    const weekEl = document.createElement('div');
+    weekEl.className = 'week-block';
+    weekEl.innerHTML = `
+      <div class="week-header">
+        <span class="week-number">W${wk}</span>
+        <span class="week-dates">${w.dates}</span>
+        ${isRedTagWeek && parseInt(wk) <= 5 ? '<span class="week-note">Red Tag Active</span>' : ''}
+      </div>
+      <div class="posts-grid">
+        ${w.posts.map(buildCard).join('')}
+      </div>`;
+    container.appendChild(weekEl);
+  });
+
+  // Character counters
+  posts.forEach(p => {
+    const id = `post-${p.num}`;
+    const card = document.getElementById(id);
+    if (!card) return;
+    const ta = card.querySelector('.caption-area');
+    const cc = document.getElementById(`cc-${id}`);
+    if (ta && cc) {
+      ta.addEventListener('input', () => { cc.textContent = ta.value.length; });
+    }
+  });
+}
+
+buildWeeks();
+</script>
+</body>
+</html>
